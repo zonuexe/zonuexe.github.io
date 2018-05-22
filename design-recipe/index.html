@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ヾ(〃＞＜)ﾉﾞ☆ zonuexe a.k.a. tadsan.</title>
+		<link rel="stylesheet" href="/umi/css/bootstrap.min.css" type="text/css" media="screen">
+		<style type="text/css">
+			body { padding-top: 20px; }
+			dfn {
+				font-style: normal;
+				font-weight: bold;
+			}
+			address {
+				text-align: center;
+			}
+			h2 { padding: 30px 0 20px; }
+
+			pre.source {
+				border: solid 1px;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+
+			<div class="page-header" id="banner">
+				<div class="row">
+					<h1>関数定義のデザインレシピ for PHP</h1>
+					<p><a href="http://pllab.is.ocha.ac.jp/~asai/book-mov/">浅井健一</a>先生のプログラミング入門書「<a href="https://www.amazon.co.jp/gp/product/4781911609/ref=as_li_ss_tl?ie=UTF8&linkCode=ll1&tag=wx310kflashca-22&linkId=57f0af45d7ca747e895ad3881cdb63d9">プログラミングの基礎</a>」で紹介される<dfn>関数定義のデザインレシピ</dfn>をPHPに適用したものです。</p>
+				</div>
+			</div>
+			<div id="design-recipe" class="row" v-cloak>
+				<form>
+					<div>
+						<label for="function_name">関数の名前：</label>
+						<input name="function_name" v-model="name">
+					</div>
+					<div>
+						<label for="function_summary">関数の目的：</label>
+						<input name="function_summary" v-model="summary">
+					</div>
+					<div>
+						<label for="function_description">関数の説明：</label>
+						<textarea name="function_description" v-model="description"></textarea>
+					</div>
+					<table>
+						<tr>
+							<td></td>
+							<td v-for="(p, i) in params">
+								<label for="" v-text="'第' + (1 + i) + '引数の型'"></label>
+							</td>
+							<td>
+								<label for="function_return_type">返り値の型</label>
+							</td>
+						</tr>
+						<tr>
+							<td>型：</td>
+							<td v-for="(p, i) in params">
+								<input for="" v-model="p.type"></label>
+							</td>
+							<td>
+								<input name="function_return_type" v-model="return_type">
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td v-for="(p, i) in params">
+								<label v-text="'第' + (1 + i) + '引数の名前'"></label>
+							</td>
+						</tr>
+						<tr>
+							<td>名前</td>
+							<td v-for="(p, i) in params">
+								<input v-model="p.name" pattern="^\$a+$">
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td v-for="(p, i) in params">
+								<label for="" v-text="'第' + (1 + i) + '引数のテスト'"></label>
+							</td>
+							<td>
+								<label for="function_return_type">期待する返り値</label>
+							</td>
+						</tr>
+						<tr v-for="(t, j) in tests">
+							<td v-text="'テストケース ' + j"></td>
+							<td v-for="(p, i) in params">
+								<input v-model="t[i]">
+							</td>
+							<td>
+								<input v-model="results[j].value">
+							</td>
+						</tr>
+					</table>
+				</form>
+				<h2>コード</h2>
+				<div id="source">
+					<pre class="source"><code v-text="compiledPhpCode"></code></pre>
+				</div>
+				<div id="test">
+					<pre class="source"><code v-text="compiledPhpTest"></code></pre>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<p><address>&copy; 2018 USAMI Kenta (@<a href="https://twitter.com/tadsan">tadsan</a>); licensed under <a href="https://opensource.org/licenses/MIT">MIT License</a>.</address></p>
+
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.16.0/lodash.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+			 <script src="/umi/js/bootstrap.min.js"></script> -->
+
+		<script>
+			function build_comment_lines(a, offset) {
+				var s = offset + "/**\n";
+
+				for (var i = 0; i < a.length; i++) {
+					if (a[i] === '') {
+						s += offset + " *\n";
+					} else {
+						s += offset + " * " + a[i] + "\n";
+					}
+				}
+
+				return s + offset + " */\n";
+			}
+
+			function append_params_comment(comments, params) {
+				var x = null;
+				var s = null;
+				var a = [];
+
+				for (var i = 0; i < params.length; i++) {
+					s = '@param ';
+					x = params[i];
+
+					if (x.type !== undefined && x.type !== '') {
+						s += x.type.replace(/ /, '|');
+
+						if (x.name === undefined || x.name === '') {
+							x.name = '$arg_' + i;
+						}
+					}
+
+					if (x.name !== undefined && x.name !== '') {
+						if (/^[^$]/.test(x.name)) {
+							x.name = '$' + x.name;
+						}
+
+						s += ' ' + x.name;
+					}
+
+					if (s !== '@param ') {
+						a.push(s);
+					}
+				}
+
+				if (a.length > 0) {
+					comments = comments.concat([''].concat(a));
+				}
+
+				return comments;
+			}
+
+			function build_data_provider(tests, results, offset)
+			{
+				var v = [];
+
+				for (var i = 0; i < tests.length; i++) {
+					if (results[i].value !== undefined && results[i].value !== '') {
+						v.push(offset + [results[i].value].concat(tests[i]).join(", "));
+					}
+				}
+
+				if (v.length > 0) {
+					return v.join("\n") + "\n";
+				}
+
+				return '';
+			}
+
+			function build_test(testcase, name, params, tests, results) {
+				if (name === '') { return ''; }
+
+				var s = "class " + name[0].toUpperCase() + name.substring(1) + "Test extends " + testcase + "\n{\n";
+
+				var args = [];
+
+				for (var i = 0; i < params.length; i++) {
+					if (params[i].name !== undefined && params[i].name !== "") {
+						args.push(params[i].name);
+					}
+				}
+
+				var offset = "    ";
+				s += build_comment_lines(["@dataProvider dataProviderFor_" + name], offset);
+				s += offset + "public function test_" + name + "(" + ['$expected'].concat(args).join(", ") + ")\n";
+				s += offset + "{\n";
+				s += offset + offset + "$actual = " + name + "(" + args.join(", ") + ");\n";
+				s += offset + offset + "$this->assertEquals($expected, $actual);\n";
+				s += offset + "}\n\n";
+
+				s += offset + "public function dataProviderFor_" + name + "()\n";
+				s += offset + "{\n";
+				s += offset + offset + "return [\n";
+				s += build_data_provider(tests, results, offset + offset + offset);
+				s += offset + offset + "];\n";
+				s += offset + "}\n";
+
+				return s + "}";
+			}
+
+			function make_php_code(v) {
+				var s = "<?php\n\n";
+				var lines = [];
+
+				if (v.summary !== "") {
+					lines = lines.concat([v.summary]);
+				}
+
+				if (v.description !== "") {
+					lines.push("");
+					lines = lines.concat(v.description.split("\n"));
+				}
+
+				lines = append_params_comment(lines, v.params);
+
+				if (v.return_type !== "") {
+					lines = lines.concat(["", "@return " + v.return_type]);
+				}
+
+				s += build_comment_lines(lines, "");
+				s += "function " + v.name + "()\n{\n    // 実装\n}";
+
+				return s;
+			}
+
+			function make_php_test(v) {
+				var s = "<?php\n\n";
+
+				s += build_test(v.testcase, v.name, v.params, v.tests, v.results);
+
+				return s;
+			}
+
+			new Vue({
+				el: '#design-recipe',
+				data: {
+					testcase: "\\PHPUnit\\Framework\\TestCase",
+					name: "名前",
+					summary: "目的",
+					description: "",
+					params: [{}, {}, {}],
+					return_type: "string",
+					tests: [[], [], [], ],
+					results: [{}, {}, {}],
+				},
+				computed: {
+					compiledPhpCode: function () {
+						return make_php_code(this)
+					},
+					compiledPhpTest: function () {
+						return make_php_test(this)
+					},
+				},
+			})
+		</script>
+	</body>
+</html>
