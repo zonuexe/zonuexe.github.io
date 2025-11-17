@@ -7,9 +7,7 @@ type NavPost = {
   relativePath?: string
 }
 
-const props = defineProps<{
-  posts: NavPost[]
-}>()
+const props = defineProps<{ posts: NavPost[] }>()
 
 const { page } = useData()
 
@@ -34,6 +32,12 @@ const nextPost = computed(() => {
 const isBlogPost = computed(
   () => typeof page.value.relativePath === 'string' && page.value.relativePath.startsWith('blog/')
 )
+
+const editLink = computed(() =>
+  page.value.relativePath
+    ? `https://github.com/zonuexe/zonuexe.github.io/blob/master/${page.value.relativePath}`
+    : ''
+)
 </script>
 
 <template>
@@ -50,5 +54,8 @@ const isBlogPost = computed(
       </a>
       <span v-else class="nav-placeholder" />
     </div>
+    <p v-if="editLink" class="nav-feedback">
+      誤字があれば<a :href="editLink" target="_blank" rel="noopener noreferrer">GitHubでPull Request</a>を送ってね。
+    </p>
   </nav>
 </template>

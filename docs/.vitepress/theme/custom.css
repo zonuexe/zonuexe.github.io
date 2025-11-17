@@ -357,6 +357,12 @@ ol.event-list {
   flex: 1 1 240px;
 }
 
+.post-navigation .nav-feedback {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 /* ホームページのコンテナとコンテンツの幅を全幅にする */
 .home .VPDoc:not(.has-sidebar) .container {
   max-width: none !important;
