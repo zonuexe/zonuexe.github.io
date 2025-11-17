@@ -2,4 +2,5 @@
 .pnpm-store/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+.linkcard_cache.json
 node_modules/

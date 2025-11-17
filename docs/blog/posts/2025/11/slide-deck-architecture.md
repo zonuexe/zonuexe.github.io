@@ -9,3 +9,7 @@ outline: [2, 3]
 
 # tadsan's slide deckとは何か
 
+作ったわけですよ。
+
+[tadsan's slide deck](@:https://zonuexe.github.io/slides/)
+

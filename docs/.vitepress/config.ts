@@ -20,6 +20,15 @@ export default defineConfig(async () => {
     buildEnd: async (siteConfig) => {
       await generateFeed(siteConfig.outDir)
     },
+    markdown: {
+      config: (md) => {
+        md.use<LinkToCardPluginOptions>(linkToCardPlugin, {
+          target: '_blank',
+          borderColor: '#90a4ff',
+          bgColor: '#ffffff'
+        })
+      }
+    },
     themeConfig: {
       logo: '/zonuexe.png',
       nav: [
