@@ -1,47 +1,52 @@
 import { defineConfig } from 'vitepress'
 import { generateFeed } from './rss'
+import { getRecentPosts } from './posts'
 
-export default defineConfig({
-  title: 'tadsan',
-  description: 'zonuexeのプロフィールとブログ。スライドやブログのアーカイブをまとめています。',
-  lang: 'ja-JP',
-  srcDir: '.',
-  base: '/',
-  cleanUrls: true,
-  appearance: 'auto',
-  head: [
-    ['meta', { name: 'theme-color', content: '#2c49ff' }],
-    ['meta', { name: 'description', content: 'zonuexeのプロフィール、ブログ、スライドをまとめたサイト。' }]
-  ],
-  buildEnd: async (siteConfig) => {
-    await generateFeed(siteConfig.outDir)
-  },
-  themeConfig: {
-    logo: '/zonuexe.png',
-    nav: [
-      { text: 'ホーム', link: '/' },
-      { text: 'ブログ', link: '/blog/' },
-      { text: 'スライド', link: 'https://zonuexe.github.io/slides/' }
+export default defineConfig(async () => {
+  const recentPosts = await getRecentPosts(10)
+
+  return {
+    title: 'tadsan&!',
+    description: ' ヾ(〃＞＜)ﾉﾞ',
+    lang: 'ja-JP',
+    srcDir: '.',
+    base: '/',
+    cleanUrls: true,
+    appearance: 'auto',
+    head: [
+      ['meta', { name: 'theme-color', content: '#2c49ff' }],
+      ['meta', { name: 'description', content: 'zonuexeのプロフィール、ブログ、スライドをまとめたサイト。' }]
     ],
-    search: { provider: 'local' },
-    sidebar: {
-      '/blog/': [
-        {
-          text: '最新の投稿',
-          items: [
-            { text: 'コミュニティメンタリングのメモ（2025）', link: '/blog/posts/2025-community-mentoring' },
-            { text: 'スライドの裏側: zonuexe.slides の構成', link: '/blog/posts/2024-slide-architecture' }
-          ]
-        }
-      ]
+    buildEnd: async (siteConfig) => {
+      await generateFeed(siteConfig.outDir)
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/zonuexe' },
-      { icon: 'x', link: 'https://x.com/zonuexe' }
-    ],
-    footer: {
-      message: 'すべての文章は特記がない限り zonuexe によるものです。',
-      copyright: `\u00a9 ${new Date().getFullYear()} zonuexe`
+    themeConfig: {
+      logo: '/zonuexe.png',
+      nav: [
+        { text: 'Home', link: '/' },
+        { text: 'Blog', link: '/blog/' },
+        { text: 'Slides', link: 'https://zonuexe.github.io/slides/' }
+      ],
+      search: { provider: 'local' },
+      sidebar: {
+        '/blog/': [
+          {
+            text: 'Latest posts',
+            items: recentPosts.map((post) => ({
+              text: post.title,
+              link: post.url
+            }))
+          }
+        ]
+      },
+      socialLinks: [
+        { icon: 'github', link: 'https://github.com/zonuexe' },
+        { icon: 'twitter', link: 'https://twitter.com/zonuexe' }
+      ],
+      footer: {
+        message: 'すべての文章は特記がない限り zonuexe によるものです。',
+        copyright: `\u00a9 ${new Date().getFullYear()} zonuexe`
+      }
     }
   }
 })

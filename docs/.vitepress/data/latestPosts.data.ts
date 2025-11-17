@@ -12,7 +12,7 @@ export interface BlogPostItem {
 declare const data: BlogPostItem[]
 export { data }
 
-export default createContentLoader('blog/posts/*.md', {
+export default createContentLoader('blog/posts/**/*.md', {
   excerpt: true,
   transform(items) {
     return items

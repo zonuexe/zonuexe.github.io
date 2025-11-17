@@ -67,7 +67,7 @@ body {
 }
 
 .VPNavBar .container {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -84,15 +84,21 @@ body {
 }
 
 .page-container {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: calc(var(--vp-nav-height, 64px) + 24px) 24px 64px;
+  padding: 0 24px 64px;
 }
 
 .profile-page {
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  h2 {
+    margin: 0;
+    border-top: 0;
+    padding-top: 0;
+  }
 }
 
 .profile-panel {
@@ -242,6 +248,68 @@ body {
   color: var(--page-text);
   font-weight: 600;
   box-shadow: var(--panel-shadow);
+}
+
+ol.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-list li {
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 20px 24px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.event-copy {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.event-copy time {
+  font-weight: 600;
+}
+
+.event-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.event-tags .hashtag {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.event-tags .hashtag:hover {
+  text-decoration: underline;
+}
+
+/* ホームページのコンテナとコンテンツの幅を全幅にする */
+.home .VPDoc:not(.has-sidebar) .container {
+  max-width: none !important;
+  display: block !important;
+  justify-content: unset !important;
+}
+
+.home .VPDoc:not(.has-sidebar) .content {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 24px 64px !important;
+}
+
+.home .VPDoc:not(.has-sidebar) .content-container {
+  max-width: none !important;
+  width: 100% !important;
 }
 
 @media (max-width: 720px) {
