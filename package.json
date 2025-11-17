@@ -1,0 +1,29 @@
+{
+  "name": "zonuexe.github.io",
+  "version": "1.0.0",
+  "description": "zonuexe personal site powered by VitePress",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zonuexe/zonuexe.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/zonuexe/zonuexe.github.io/issues"
+  },
+  "homepage": "https://github.com/zonuexe/zonuexe.github.io#readme",
+  "devDependencies": {
+    "fast-glob": "^3.3.3",
+    "feed": "^5.1.0",
+    "gray-matter": "^4.0.3",
+    "vitepress": "^1.6.4"
+  }
+}
