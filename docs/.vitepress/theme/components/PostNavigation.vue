@@ -35,7 +35,7 @@ const isBlogPost = computed(
 
 const editLink = computed(() =>
   page.value.relativePath
-    ? `https://github.com/zonuexe/zonuexe.github.io/blob/master/${page.value.relativePath}`
+    ? `https://github.com/zonuexe/zonuexe.github.io/blob/master/docs/${page.value.relativePath}`
     : ''
 )
 </script>
@@ -55,7 +55,7 @@ const editLink = computed(() =>
       <span v-else class="nav-placeholder" />
     </div>
     <p v-if="editLink" class="nav-feedback">
-      誤字があれば<a :href="editLink" target="_blank" rel="noopener noreferrer">GitHubでPull Request</a>を送ってね。
+      <a :href="editLink" target="_blank">誤字があればGitHubでPull Requestを送ってね</a>
     </p>
   </nav>
 </template>
