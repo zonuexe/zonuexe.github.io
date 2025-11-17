@@ -34,25 +34,7 @@ outline: false
     </div>
   </section>
 
-  <section class="profile-panel">
-    <h2 id="latest">最新の書きもの</h2>
-    <ul class="blog-list">
-      <li>
-        <a href="/blog/posts/2025-community-mentoring">コミュニティメンタリングのメモ（2025）</a>
-        <p class="blog-meta">2025-02-10 · 現場のサポート体制をどう設計するか</p>
-        <div class="tag-list">
-          <span>community</span><span>mentoring</span>
-        </div>
-      </li>
-      <li>
-        <a href="/blog/posts/2024-slide-architecture">スライドの裏側: zonuexe.slides の構成</a>
-        <p class="blog-meta">2024-11-18 · VitePress とカスタムインフラのハイブリッド構成</p>
-        <div class="tag-list">
-          <span>slides</span><span>tooling</span>
-        </div>
-      </li>
-    </ul>
-  </section>
+  <LatestPosts />
 
   <section class="profile-panel">
     <h2 id="slides">Slides &amp; Talks</h2>
