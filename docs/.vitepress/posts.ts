@@ -13,6 +13,7 @@ export type PostMeta = {
   date: string
   url: string
   absoluteUrl: string
+  relativePath: string
 }
 
 export async function getAllPosts(): Promise<PostMeta[]> {
@@ -33,7 +34,8 @@ export async function getAllPosts(): Promise<PostMeta[]> {
       description: data.description as string | undefined,
       date: data.date as string,
       url,
-      absoluteUrl: `${siteUrl}${url}`
+      absoluteUrl: `${siteUrl}${url}`,
+      relativePath: normalized
     })
   }
 

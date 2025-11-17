@@ -1,0 +1,54 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useData } from 'vitepress'
+type NavPost = {
+  title: string
+  url: string
+  relativePath?: string
+}
+
+const props = defineProps<{
+  posts: NavPost[]
+}>()
+
+const { page } = useData()
+
+const currentIndex = computed(() =>
+  props.posts.findIndex(
+    (post) => post.relativePath === page.value.relativePath
+  )
+)
+
+const previousPost = computed(() => {
+  const idx = currentIndex.value
+  if (idx === -1 || idx >= props.posts.length - 1) return null
+  return props.posts[idx + 1]
+})
+
+const nextPost = computed(() => {
+  const idx = currentIndex.value
+  if (idx <= 0) return null
+  return props.posts[idx - 1]
+})
+
+const isBlogPost = computed(
+  () => typeof page.value.relativePath === 'string' && page.value.relativePath.startsWith('blog/')
+)
+</script>
+
+<template>
+  <nav v-if="isBlogPost" class="post-navigation" aria-label="Blog pagination">
+    <div class="nav-links">
+      <a v-if="previousPost" class="prev-post" rel="prev" :href="previousPost.url">
+        <span class="nav-label">前の記事</span>
+        <span class="nav-title">{{ previousPost.title }}</span>
+      </a>
+      <span v-else class="nav-placeholder" />
+      <a v-if="nextPost" class="next-post" rel="next" :href="nextPost.url">
+        <span class="nav-label">次の記事</span>
+        <span class="nav-title">{{ nextPost.title }}</span>
+      </a>
+      <span v-else class="nav-placeholder" />
+    </div>
+  </nav>
+</template>

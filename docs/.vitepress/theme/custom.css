@@ -294,6 +294,69 @@ ol.event-list {
   text-decoration: underline;
 }
 
+.post-meta {
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.post-meta time {
+  font-weight: 600;
+}
+
+.vp-doc h2 {
+  border-top: none;
+  padding-top: 4px;
+}
+
+.vp-doc a .link-favicon {
+  margin: 0 4px 1px 1px;
+  vertical-align: text-bottom;
+  border-radius: 4px;
+  display: inline;;
+}
+
+.post-navigation {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.post-navigation .nav-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.post-navigation a {
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--page-text);
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+}
+
+.post-navigation .nav-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.post-navigation .nav-title {
+  font-weight: 600;
+}
+
+.post-navigation .nav-placeholder {
+  flex: 1 1 240px;
+}
+
 /* ホームページのコンテナとコンテンツの幅を全幅にする */
 .home .VPDoc:not(.has-sidebar) .container {
   max-width: none !important;

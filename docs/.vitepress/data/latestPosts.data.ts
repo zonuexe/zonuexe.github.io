@@ -21,6 +21,7 @@ export default createContentLoader('blog/posts/**/*.md', {
         description: item.frontmatter.description as string | undefined,
         date: item.frontmatter.date as string,
         url: item.url,
+        relativePath: item.relativePath,
         tags: (item.frontmatter.tags as string[]) ?? [],
         excerpt: item.excerpt ?? ''
       }))
