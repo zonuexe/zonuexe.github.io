@@ -51,6 +51,13 @@ const toISODate = (value: string) => {
 
 const roleLabel = (roles: string[] = []) => roles.join(' / ')
 const hasRoles = (roles?: string[]) => Boolean(roles && roles.length > 0)
+const isPastEvent = (dates: string[]) => {
+  if (!dates.length) return false
+  const lastDate = dates[dates.length - 1]
+  const parsed = new Date(lastDate)
+  if (Number.isNaN(parsed.getTime())) return false
+  return parsed.getTime() < Date.now()
+}
 </script>
 
 <template>
@@ -92,8 +99,8 @@ const hasRoles = (roles?: string[]) => Boolean(roles && roles.length > 0)
          --><span class="p-role" itemprop="performer">
               {{ roleLabel(event.roles) }}として<!--
             --></span><!--
-       --></template><!--
-       -->参加します。<!--
+      --></template><!--
+       -->{{ isPastEvent(event.dates) ? '参加しました。' : '参加します。' }}<!--
        --><span v-if="event.hashtags?.length" class="event-tags">
             <a
               v-for="tag in event.hashtags"
