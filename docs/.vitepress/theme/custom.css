@@ -306,8 +306,22 @@ ol.event-list {
   color: var(--text-muted);
 }
 
+.post-meta p {
+  margin: 4px 0;
+}
+
+.post-meta .label {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
 .post-meta time {
   font-weight: 600;
+}
+
+.post-meta a {
+  color: var(--accent-blue);
+  text-decoration: underline;
 }
 
 .vp-doc h2 {
@@ -332,9 +346,23 @@ ol.event-list {
 
 .post-navigation .nav-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+.post-navigation .nav-links a {
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+  text-decoration: none;
+  color: var(--page-text);
+  max-width: 320px;
 }
 
 .post-navigation .nav-label {
@@ -401,5 +429,69 @@ ol.event-list {
   .profile-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+.vp-linkcard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  margin: 16px 0;
+}
+
+.vp-linkcard__inner {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 18px;
+  border: 1px solid var(--panel-border);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  align-items: center;
+}
+
+.vp-linkcard__text {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vp-linkcard__site {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+
+.vp-linkcard__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--page-text);
+}
+
+.vp-linkcard__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.vp-linkcard__media img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+}
+
+@media (max-width: 720px) {
+  .vp-linkcard__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vp-linkcard__media img {
+    width: 64px;
+    height: 64px;
   }
 }
