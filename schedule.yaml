@@ -7,11 +7,43 @@
   place: 富山国際会議場
   hashtags:
   - burikaigi
+
 - name: Rubyリリース30周年パーティー
   url: https://techplay.jp/event/988095
   dates:
   - 2025-12-20
   location: 東京都港区
+
+- name: TechGYOZA2025
+  url: https://techgyoza.connpass.com/event/371476/
+  dates:
+  - 2025-12-13
+  roles:
+  - ライトニングトーク枠
+  location: 栃木県小山市
+  place: 小山市立生涯学習センター ギャラリー
+  hashtags:
+  - TechGYOZA
+
+- name: 北陸Ruby会議01
+  url: https://regional.rubykaigi.org/hokuriku01/
+  dates:
+  - 2025-12-6
+  location: 石川県金沢市
+  place: 石川県立図書館
+  hashtags:
+  - hokurikurk01
+
+- name: 'Terminal Night #1'
+  url: https://kichijojipm.connpass.com/event/373896/
+  dates:
+  - 2025-11-28
+  roles:
+  - 会場スタッフ
+  location: 東京都渋谷区
+  place: ピクシブ株式会社 東京オフィス
+  hashtags:
+  - terminalnight
 
 - name: PHPカンファレンス香川2025
   url: https://phpcon.kagawa.jp/2025/
@@ -25,13 +57,11 @@
   hashtags:
   - phpconkagawa
 
-- name: 'Terminal Night #1'
-  url: https://kichijojipm.connpass.com/event/373896/
+- name: '堅牢.py #1'
+  url: https://kenro.connpass.com/event/371009/
   dates:
-  - 2025-11-28
-  roles:
-  - 会場スタッフ
-  location: 東京都渋谷区
-  place: ピクシブ株式会社 東京オフィス
+  - 2025-11-20
+  location: 東京都千代田区丸の内
+  place: 株式会社ユーザベース
   hashtags:
-  - terminalnight
+  - kenro_py
