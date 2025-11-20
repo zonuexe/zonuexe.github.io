@@ -136,15 +136,15 @@ export default defineConfig(async () => {
 
             return `
               <a class="vp-linkcard" href="${escapeHtml(options.href)}" target="${options.target}" rel="noopener noreferrer">
-                <span class="vp-linkcard__inner">
-                  <span class="vp-linkcard__text">
-                    <span class="vp-linkcard__site">${site}</span>
-                    <span class="vp-linkcard__title">${title}</span>
-                    ${description ? `<span class="vp-linkcard__desc">${description}</span>` : ''}
+                <span class="vp-linkcard-inner">
+                  <span class="vp-linkcard-text">
+                    <span class="vp-linkcard-title">${title}</span>
+                    <span class="vp-linkcard-domain">${site}</span>
+                    ${description ? `<span class="vp-linkcard-desc">${description}</span>` : ''}
                   </span>
                   ${
                     logo
-                      ? `<span class="vp-linkcard__media"><img src="${escapeHtml(logo)}" alt="" loading="lazy"></span>`
+                      ? `<span class="vp-linkcard-media"><img src="${escapeHtml(logo)}" alt="" loading="lazy"></span>`
                       : ''
                   }
                 </span>
