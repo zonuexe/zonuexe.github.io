@@ -1,8 +1,8 @@
 - name: BuriKaigi 2026
   url: https://burikaigi.dev/
   dates:
-  - 2025-01-09
-  - 2025-01-10
+  - 2026-01-09
+  - 2026-01-10
   location: 富山県富山市
   place: 富山国際会議場
   hashtags:
@@ -21,7 +21,7 @@
   roles:
   - ライトニングトーク枠
   location: 栃木県小山市
-  place: 小山市立生涯学習センター ギャラリー
+  place: 小山市立生涯学習センター
   hashtags:
   - TechGYOZA
 
