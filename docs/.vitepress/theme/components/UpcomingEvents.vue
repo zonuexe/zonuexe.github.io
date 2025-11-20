@@ -13,7 +13,7 @@ interface ScheduleItem {
 }
 
 const allEvents = (parse(scheduleRaw) as ScheduleItem[]) ?? []
-const events = allEvents.slice(0, 5)
+const events = allEvents.slice(0, 10)
 
 const fullFormatter = new Intl.DateTimeFormat('ja-JP', {
   year: 'numeric',
