@@ -36,6 +36,7 @@ const pagesSitemapFile = 'sitemap-pages.xml'
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
   name: 'USAMI Kenta',
   alternateName: 'tadsan',
   url: `${siteUrl}/`,
@@ -58,6 +59,29 @@ const personJsonLd = {
     'https://github.com/zonuexe',
     'https://www.hatena.ne.jp/zonu_exe'
   ]
+}
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${siteUrl}/blog/#blog`,
+  name: 'tadsan&! blog',
+  description: 'tadsanのブログ更新情報',
+  url: `${siteUrl}/blog/`,
+  inLanguage: 'ja',
+  author: { '@id': personJsonLd['@id'] },
+  publisher: { '@id': personJsonLd['@id'] }
+}
+
+const toRoutePath = (page: string, cleanUrls: boolean) => {
+  let route = page.replace(/(^|\/)index\.md$/, '$1')
+  route = route.replace(/\.md$/, cleanUrls ? '' : '.html')
+  return route.startsWith('/') ? route : `/${route}`
+}
+
+const toIsoString = (value: unknown) => {
+  if (!value) return undefined
+  const date = typeof value === 'number' ? new Date(value) : new Date(String(value))
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString()
 }
 
 async function generateGitHistory() {
@@ -169,6 +193,40 @@ export default defineConfig(async () => {
           if (!postDate || item.lastmod) return item
           return { ...item, lastmod: new Date(postDate).toISOString() }
         })
+    },
+    transformHead: ({ page, siteConfig, pageData }) => {
+      const route = toRoutePath(page, Boolean(siteConfig.cleanUrls))
+      const head: [string, Record<string, string>, string?][] = []
+
+      if (route === '/blog/') {
+        head.push(['script', { type: 'application/ld+json' }, JSON.stringify(blogJsonLd)])
+      }
+
+      if (route.startsWith('/blog/posts/')) {
+        const frontmatter = pageData?.frontmatter ?? {}
+        const published = frontmatter.date ?? pageData?.lastUpdated
+        const modified = pageData?.lastUpdated ?? frontmatter.date
+        const keywords = Array.isArray(frontmatter.tags) ? frontmatter.tags : undefined
+        const canonical = `${siteUrl}${route}`
+        const blogPosting = {
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          '@id': `${canonical}#post`,
+          mainEntityOfPage: canonical,
+          headline: pageData?.title ?? frontmatter.title ?? '',
+          description: frontmatter.description ?? pageData?.description ?? '',
+          url: canonical,
+          inLanguage: 'ja',
+          datePublished: toIsoString(published),
+          dateModified: toIsoString(modified),
+          author: { '@id': personJsonLd['@id'] },
+          publisher: { '@id': personJsonLd['@id'] },
+          keywords
+        }
+        head.push(['script', { type: 'application/ld+json' }, JSON.stringify(blogPosting)])
+      }
+
+      return head
     },
     head: [
       ['meta', { name: 'theme-color', content: '#2c49ff' }],
