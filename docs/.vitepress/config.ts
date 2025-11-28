@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { generateFeed } from './rss'
-import { getRecentPosts } from './posts'
+import { getAllPosts, getRecentPosts } from './posts'
 import { createHighlighter } from 'shiki'
 import type { LinkToCardPluginOptions, UrlMetadata } from 'vitepress-linkcard'
 import { faviconLinkPlugin } from './plugins/faviconLinks'
@@ -9,6 +9,7 @@ import { execFileSync } from 'node:child_process'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
+const siteUrl = 'https://zonuexe.github.io'
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, '&amp;')
@@ -29,6 +30,9 @@ const getHostname = (href: string) => {
 const repoBase = 'https://github.com/zonuexe/zonuexe.github.io'
 const docsDir = path.resolve(process.cwd(), 'docs')
 const gitHistoryPath = path.resolve(docsDir, '.vitepress/data/git-history.json')
+const publicDir = path.join(docsDir, 'public')
+const slidesSitemapUrl = `${siteUrl}/slides/sitemap.xml`
+const pagesSitemapFile = 'sitemap-pages.xml'
 
 async function generateGitHistory() {
   const files = await fg('blog/**/*.md', { cwd: docsDir })
@@ -77,9 +81,40 @@ async function generateGitHistory() {
   await fs.writeFile(gitHistoryPath, JSON.stringify(histories, null, 2))
 }
 
+async function generateSitemapIndex(outDir: string) {
+  const generatedSitemapPath = path.join(outDir, 'sitemap.xml')
+  const exists = await fs.stat(generatedSitemapPath).catch(() => null)
+  if (!exists) return
+
+  const pagesSitemapPath = path.join(outDir, pagesSitemapFile)
+  await fs.rename(generatedSitemapPath, pagesSitemapPath)
+
+  const lastmod = new Date().toISOString()
+  const indexPath = path.join(outDir, 'sitemap.xml')
+  const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${siteUrl}/${pagesSitemapFile}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${slidesSitemapUrl}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+</sitemapindex>
+`
+  await fs.mkdir(publicDir, { recursive: true })
+  await Promise.all([
+    fs.writeFile(indexPath, indexXml, 'utf-8'),
+    fs.writeFile(path.join(publicDir, 'sitemap.xml'), indexXml, 'utf-8'),
+    fs.copyFile(pagesSitemapPath, path.join(publicDir, pagesSitemapFile))
+  ])
+}
+
 export default defineConfig(async () => {
   const { linkToCardPlugin } = await import('vitepress-linkcard')
   const recentPosts = await getRecentPosts(10)
+  const postDateMap = new Map((await getAllPosts()).map((post) => [post.url, post.date]))
   const shikiHighlighter = await createHighlighter({
     themes: ['github-dark', 'github-light'],
       langs: [
@@ -99,6 +134,16 @@ export default defineConfig(async () => {
     base: '/',
     cleanUrls: true,
     appearance: 'auto',
+    lastUpdated: true,
+    sitemap: {
+      hostname: siteUrl,
+      transformItems: (items) =>
+        items.map((item) => {
+          const postDate = postDateMap.get(item.url)
+          if (!postDate || item.lastmod) return item
+          return { ...item, lastmod: new Date(postDate).toISOString() }
+        })
+    },
     head: [
       ['meta', { name: 'theme-color', content: '#2c49ff' }],
       ['meta', { name: 'description', content: '出た！ たっどさんがおくる、ゆかいブログ。すごーく おもしろいんだ！ すごーく ゆかいなんだ！' }],
@@ -106,6 +151,7 @@ export default defineConfig(async () => {
     ],
     buildEnd: async (siteConfig) => {
       await generateFeed(siteConfig.outDir)
+      await generateSitemapIndex(siteConfig.outDir)
     },
     markdown: {
       theme: {

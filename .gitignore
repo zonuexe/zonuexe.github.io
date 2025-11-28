@@ -5,3 +5,5 @@ docs/.vitepress/dist/
 docs/.vitepress/data/git-history.json
 .linkcard_cache.json
 node_modules/
+docs/public/sitemap.xml
+docs/public/sitemap-pages.xml
