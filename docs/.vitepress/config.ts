@@ -164,7 +164,18 @@ async function generateSitemapIndex(outDir: string) {
 export default defineConfig(async () => {
   const { linkToCardPlugin } = await import('vitepress-linkcard')
   const recentPosts = await getRecentPosts(10)
-  const postDateMap = new Map((await getAllPosts()).map((post) => [post.url, post.date]))
+  const allPosts = await getAllPosts()
+  const postDateMap = new Map(allPosts.map((post) => [post.url, post.date]))
+  const yearsAsc = Array.from(
+    new Set(
+      allPosts
+        .map((post) => {
+          const d = new Date(post.date)
+          return Number.isNaN(d.getTime()) ? undefined : d.getFullYear()
+        })
+        .filter((year): year is number => typeof year === 'number')
+    )
+  ).sort((a, b) => a - b)
   const shikiHighlighter = await createHighlighter({
     themes: ['github-dark', 'github-light'],
       langs: [
@@ -193,6 +204,26 @@ export default defineConfig(async () => {
           if (!postDate || item.lastmod) return item
           return { ...item, lastmod: new Date(postDate).toISOString() }
         })
+    },
+    transformPageData: (pageData) => {
+      const yearParam = Number(pageData.params?.year)
+      const isYearArchive =
+        Number.isInteger(yearParam) &&
+        typeof pageData.relativePath === 'string' &&
+        pageData.relativePath.startsWith('blog/posts/')
+      if (!isYearArchive) return
+
+      if (!yearsAsc.includes(yearParam)) {
+        pageData.prev = null
+        pageData.next = null
+        return
+      }
+
+      const idx = yearsAsc.indexOf(yearParam)
+      const older = idx > 0 ? yearsAsc[idx - 1] : undefined
+      const newer = idx < yearsAsc.length - 1 ? yearsAsc[idx + 1] : undefined
+      pageData.prev = older ? { text: `${older}年のアーカイブ`, link: `/blog/posts/${older}/` } : null
+      pageData.next = newer ? { text: `${newer}年のアーカイブ`, link: `/blog/posts/${newer}/` } : null
     },
     transformHead: ({ page, siteConfig, pageData }) => {
       const route = toRoutePath(page, Boolean(siteConfig.cleanUrls))

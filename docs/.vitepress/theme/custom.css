@@ -469,54 +469,41 @@ ol.event-list {
   margin: 0 0 4px;
 }
 
-.blog-archive-groups {
-  display: flex;
-  flex-direction: column;
+.blog-archive-years {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
-.blog-archive-group {
+.blog-archive-year-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   border: 1px solid var(--panel-border);
   border-radius: 16px;
-  padding: 16px;
-  background: var(--vp-c-bg-soft);
+  padding: 14px 16px;
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+  color: var(--page-text);
+  text-decoration: none;
 }
 
-.blog-archive-year {
+.blog-archive-year-card:hover {
+  border-color: var(--accent-blue);
+}
+
+.blog-archive-year-label {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 12px;
+  margin: 0 0 4px;
   font-size: 1.1rem;
 }
 
-.blog-archive-year span {
+.blog-archive-year-label span {
   background: var(--tag-bg);
   border-radius: 999px;
   padding: 6px 12px;
-}
-
-.blog-archive-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.blog-archive-item {
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--panel-border);
-  background: var(--panel-bg);
-  box-shadow: var(--panel-shadow);
-}
-
-.blog-archive-item h4 {
-  margin: 4px 0 0;
-}
-
-.blog-archive-item .blog-description {
-  margin: 6px 0 0;
-  color: var(--text-muted);
 }
 
 /* ホームページのコンテナとコンテンツの幅を全幅にする */

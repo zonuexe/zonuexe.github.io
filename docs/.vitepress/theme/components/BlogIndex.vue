@@ -36,6 +36,16 @@ const archiveGroups = computed(() => {
       items: items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     }))
 })
+
+const archiveYears = computed(() =>
+  archiveGroups.value
+    .filter((group) => group.year !== 'unknown')
+    .map((group) => ({
+      year: group.year as number,
+      count: group.items.length,
+      latest: group.items[0]?.date
+    }))
+)
 </script>
 
 <template>
@@ -69,30 +79,20 @@ const archiveGroups = computed(() => {
         <h2 id="recent">アーカイブ</h2>
         <p class="blog-meta">これまでの投稿を年別にまとめました。</p>
       </div>
-      <div v-if="archiveGroups.length" class="blog-archive-groups">
-        <div v-for="group in archiveGroups" :key="group.year" class="blog-archive-group">
-          <h3 class="blog-archive-year">
-            <span>{{ group.year === 'unknown' ? 'Other' : group.year }}</span>
-          </h3>
-          <div class="blog-archive-list">
-            <article v-for="post in group.items" :key="post.url" class="blog-archive-item h-entry">
-              <header>
-                <p class="blog-meta">
-                  <time class="dt-published" :datetime="toISODate(post.date)">{{ formatDate(post.date) }}</time>
-                </p>
-                <h4 class="p-name">
-                  <a class="u-url" :href="post.url">{{ post.title }}</a>
-                </h4>
-              </header>
-              <p v-if="post.description" class="blog-description p-summary">
-                {{ post.description }}
-              </p>
-              <ul v-if="post.tags?.length" class="tag-list">
-                <li v-for="tag in post.tags" :key="tag" class="tag-item p-category">{{ tag }}</li>
-              </ul>
-            </article>
-          </div>
-        </div>
+      <div v-if="archiveYears.length" class="blog-archive-years">
+        <a
+          v-for="group in archiveYears"
+          :key="group.year"
+          class="blog-archive-year-card"
+          :href="`/blog/posts/${group.year}/`"
+        >
+          <div class="blog-archive-year-label">{{ group.year }}</div>
+          <p class="blog-meta">{{ group.count }}件の投稿</p>
+          <p v-if="group.latest" class="blog-meta">
+            最終更新:
+            <time :datetime="toISODate(group.latest)">{{ formatDate(group.latest) }}</time>
+          </p>
+        </a>
       </div>
       <p v-else class="blog-meta">ブログ記事は準備中です。</p>
     </section>
