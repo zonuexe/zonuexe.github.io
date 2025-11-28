@@ -33,6 +33,32 @@ const gitHistoryPath = path.resolve(docsDir, '.vitepress/data/git-history.json')
 const publicDir = path.join(docsDir, 'public')
 const slidesSitemapUrl = `${siteUrl}/slides/sitemap.xml`
 const pagesSitemapFile = 'sitemap-pages.xml'
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'USAMI Kenta',
+  alternateName: 'tadsan',
+  url: `${siteUrl}/`,
+  image: `${siteUrl}/zonuexe.png`,
+  jobTitle: 'Web Programmer',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'pixiv Inc.'
+  },
+  homeLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Tokyo',
+      addressCountry: 'JP'
+    }
+  },
+  sameAs: [
+    'https://twitter.com/zonuexe',
+    'https://github.com/zonuexe',
+    'https://www.hatena.ne.jp/zonu_exe'
+  ]
+}
 
 async function generateGitHistory() {
   const files = await fg('blog/**/*.md', { cwd: docsDir })
@@ -147,7 +173,8 @@ export default defineConfig(async () => {
     head: [
       ['meta', { name: 'theme-color', content: '#2c49ff' }],
       ['meta', { name: 'description', content: '出た！ たっどさんがおくる、ゆかいブログ。すごーく おもしろいんだ！ すごーく ゆかいなんだ！' }],
-      ['link', { rel: 'author', href: 'https://www.hatena.ne.jp/zonu_exe' }]
+      ['link', { rel: 'author', href: 'https://www.hatena.ne.jp/zonu_exe' }],
+      ['script', { type: 'application/ld+json' }, JSON.stringify(personJsonLd)]
     ],
     buildEnd: async (siteConfig) => {
       await generateFeed(siteConfig.outDir)
