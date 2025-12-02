@@ -6,6 +6,7 @@ import PostMeta from './components/PostMeta.vue'
 import PostNavigation from './components/PostNavigation.vue'
 import BlogIndex from './components/BlogIndex.vue'
 import YearPosts from './components/YearPosts.vue'
+import TwitterWidgetsLoader from './components/TwitterWidgetsLoader.vue'
 import { data as posts } from '../data/latestPosts.data'
 import './custom.css'
 
@@ -14,7 +15,8 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'doc-before': () => h(PostMeta),
-      'doc-bottom': () => h(PostNavigation, { posts })
+      'doc-bottom': () => h(PostNavigation, { posts }),
+      'layout-bottom': () => h(TwitterWidgetsLoader)
     })
   },
   enhanceApp({ app }) {

@@ -225,7 +225,7 @@ export default defineConfig(async () => {
       pageData.prev = older ? { text: `${older}年のアーカイブ`, link: `/blog/posts/${older}/` } : null
       pageData.next = newer ? { text: `${newer}年のアーカイブ`, link: `/blog/posts/${newer}/` } : null
     },
-    transformHead: ({ page, siteConfig, pageData }) => {
+    transformHead: ({ page, siteConfig, pageData, content }) => {
       const route = toRoutePath(page, Boolean(siteConfig.cleanUrls))
       const head: [string, Record<string, string>, string?][] = []
 
@@ -239,13 +239,15 @@ export default defineConfig(async () => {
         const modified = pageData?.lastUpdated ?? frontmatter.date
         const keywords = Array.isArray(frontmatter.tags) ? frontmatter.tags : undefined
         const canonical = `${siteUrl}${route}`
+        const title = pageData?.title ?? frontmatter.title ?? ''
+        const description = frontmatter.description ?? pageData?.description ?? ''
         const blogPosting = {
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
           '@id': `${canonical}#post`,
           mainEntityOfPage: canonical,
-          headline: pageData?.title ?? frontmatter.title ?? '',
-          description: frontmatter.description ?? pageData?.description ?? '',
+          headline: title,
+          description,
           url: canonical,
           inLanguage: 'ja',
           datePublished: toIsoString(published),
@@ -255,6 +257,17 @@ export default defineConfig(async () => {
           keywords
         }
         head.push(['script', { type: 'application/ld+json' }, JSON.stringify(blogPosting)])
+        head.push(
+          ['meta', { property: 'og:type', content: 'article' }],
+          ['meta', { property: 'og:title', content: title }],
+          ['meta', { property: 'og:description', content: description }],
+          ['meta', { property: 'og:url', content: canonical }],
+          ['meta', { property: 'og:site_name', content: 'tadsan&! blog' }],
+          ['meta', { name: 'twitter:card', content: 'summary' }],
+          ['meta', { name: 'twitter:creator', content: '@tadsan' }],
+          ['link', { rel: 'canonical', href: canonical }],
+          ['script', { async: '', src: 'https://platform.twitter.com/widgets.js', charset: 'utf-8' }]
+        )
       }
 
       return head
