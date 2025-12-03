@@ -653,3 +653,10 @@ a.vp-linkcard {
     }
   }
 }
+
+@media (min-width: 960px) {
+  .VPNavBar:not(.home.top) .content-body[data-v-5cc16fe4] {
+    position: relative;
+      background-color: inherit;
+  }
+}
