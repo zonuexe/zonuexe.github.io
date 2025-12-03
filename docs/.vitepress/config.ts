@@ -241,6 +241,7 @@ export default defineConfig(async () => {
         const canonical = `${siteUrl}${route}`
         const title = pageData?.title ?? frontmatter.title ?? ''
         const description = frontmatter.description ?? pageData?.description ?? ''
+        const image = frontmatter.image || `${siteUrl}/zonuexe.png`
         const blogPosting = {
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
@@ -249,6 +250,7 @@ export default defineConfig(async () => {
           headline: title,
           description,
           url: canonical,
+          image,
           inLanguage: 'ja',
           datePublished: toIsoString(published),
           dateModified: toIsoString(modified),
@@ -263,7 +265,11 @@ export default defineConfig(async () => {
           ['meta', { property: 'og:description', content: description }],
           ['meta', { property: 'og:url', content: canonical }],
           ['meta', { property: 'og:site_name', content: 'tadsan&! blog' }],
+          ['meta', { property: 'og:image', content: image }],
+          ['meta', { property: 'og:image:width', content: '460' }],
+          ['meta', { property: 'og:image:height', content: '460' }],
           ['meta', { name: 'twitter:card', content: 'summary' }],
+          ['meta', { name: 'twitter:image', content: image }],
           ['meta', { name: 'twitter:creator', content: '@tadsan' }],
           ['link', { rel: 'canonical', href: canonical }],
           ['script', { async: '', src: 'https://platform.twitter.com/widgets.js', charset: 'utf-8' }]
