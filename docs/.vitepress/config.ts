@@ -333,6 +333,7 @@ export default defineConfig(async () => {
       }
     },
     themeConfig: {
+      outline: [2, 3],
       logo: '/zonuexe.png',
       nav: [
         { text: 'Home', link: '/' },
