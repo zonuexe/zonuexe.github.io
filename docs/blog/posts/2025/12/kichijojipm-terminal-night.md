@@ -4,6 +4,7 @@ description: こんばんは！[吉祥寺.pmについての25個の小さな話�
 date: 2025-12-03
 tags:
 - meetup
+- community
 ---
 
 # Terminal Nightと私

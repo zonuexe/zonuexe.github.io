@@ -3,8 +3,8 @@ title: "20I5年 福岡の旅"
 description: こんにちは！ Advent Calendarです！ PHPカンファレンス福岡、10年完走おつかれさまでした！
 date: 2025-12-01
 tags:
-- presentation
-outline: [2, 3]
+- conference
+- community
 ---
 
 # 20I5年 福岡の旅

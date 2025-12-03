@@ -3,8 +3,7 @@ title: はじめてのハウスの試みについて
 description: こんにちは！ やんちゃハウス Advent Calendar 2025です！ 前日はid:katsyoshiによる『老害からのひとこと』でした。かつよ氏が最多参加者であるなら、私は…
 date: 2025-12-02
 tags:
-- presentation
-outline: [2, 3]
+- community
 ---
 
 # はじめてのハウスの試みについて
