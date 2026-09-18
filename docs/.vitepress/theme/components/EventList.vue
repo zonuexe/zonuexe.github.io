@@ -41,13 +41,18 @@ const toISODate = (value: string) => {
 
 const roleLabel = (roles: string[] = []) => roles.join(' / ')
 const hasRoles = (roles?: string[]) => Boolean(roles && roles.length > 0)
+const tokyoDay = (value: Date) =>
+  new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo' }).format(value)
+
 const isPastEvent = (dates: string[]) => {
   if (!dates.length) return false
   const lastDate = dates[dates.length - 1]
   const parsed = new Date(lastDate)
   if (Number.isNaN(parsed.getTime())) return false
-  return parsed.getTime() < Date.now()
+  return tokyoDay(parsed) < tokyoDay(new Date())
 }
+const heldPhrase = (dates: string[]) =>
+  isPastEvent(dates) ? 'で開催された' : 'で開催される'
 const participationVerb = (dates: string[]) =>
   isPastEvent(dates) ? '参加しました' : '参加します'
 </script>
@@ -74,7 +79,7 @@ const participationVerb = (dates: string[]) =>
           -->{{ event.place ? 'の' : '' }}<!--
           --><span v-if="event.place" class="p-name" itemprop="name">{{ event.place }}</span><!--
         --></span><!--
-     -->で開催される<!--
+     -->{{ heldPhrase(event.dates) }}<!--
      --><a
           class="u-url p-name"
           itemprop="url"
