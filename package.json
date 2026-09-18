@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "zonuexe personal site powered by VitePress",
   "private": true,
+  "packageManager": "pnpm@12.4.2",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
