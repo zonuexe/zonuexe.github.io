@@ -283,6 +283,32 @@ ol.event-list {
   time {
     font-weight: 600;
   }
+
+  del {
+    color: var(--text-muted);
+  }
+
+  ins {
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
+
+.event-year-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: baseline;
+
+  a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .event-tags {

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { generateFeed } from './rss'
 import { getAllPosts, getRecentPosts } from './posts'
+import { getEventYears } from './schedule'
 import { createHighlighter } from 'shiki'
 import type { LinkToCardPluginOptions, UrlMetadata } from 'vitepress-linkcard'
 import { faviconLinkPlugin } from './plugins/faviconLinks'
@@ -176,6 +177,7 @@ export default defineConfig(async () => {
         .filter((year): year is number => typeof year === 'number')
     )
   ).sort((a, b) => a - b)
+  const eventYearsAsc = getEventYears().slice().sort((a, b) => a - b)
   const shikiHighlighter = await createHighlighter({
     themes: ['github-dark', 'github-light'],
       langs: [
@@ -207,10 +209,25 @@ export default defineConfig(async () => {
     },
     transformPageData: (pageData) => {
       const yearParam = Number(pageData.params?.year)
-      const isYearArchive =
-        Number.isInteger(yearParam) &&
-        typeof pageData.relativePath === 'string' &&
-        pageData.relativePath.startsWith('blog/posts/')
+      if (!Number.isInteger(yearParam) || typeof pageData.relativePath !== 'string') return
+
+      if (pageData.relativePath.startsWith('events/')) {
+        pageData.title = `${yearParam}年のイベント`
+        pageData.description = `${yearParam}年に参加した・参加予定のイベント一覧`
+        if (!eventYearsAsc.includes(yearParam)) {
+          pageData.prev = null
+          pageData.next = null
+          return
+        }
+        const idx = eventYearsAsc.indexOf(yearParam)
+        const older = idx > 0 ? eventYearsAsc[idx - 1] : undefined
+        const newer = idx < eventYearsAsc.length - 1 ? eventYearsAsc[idx + 1] : undefined
+        pageData.prev = older ? { text: `${older}年のイベント`, link: `/events/${older}/` } : null
+        pageData.next = newer ? { text: `${newer}年のイベント`, link: `/events/${newer}/` } : null
+        return
+      }
+
+      const isYearArchive = pageData.relativePath.startsWith('blog/posts/')
       if (!isYearArchive) return
 
       if (!yearsAsc.includes(yearParam)) {
@@ -344,6 +361,7 @@ export default defineConfig(async () => {
       nav: [
         { text: 'Home', link: '/' },
         { text: 'Blog', link: '/blog/' },
+        { text: 'Events', link: '/events/' },
         { text: 'Slides', link: 'https://zonuexe.github.io/slides/' }
       ],
       search: { provider: 'local' },

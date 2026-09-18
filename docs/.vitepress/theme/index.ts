@@ -6,6 +6,8 @@ import PostMeta from './components/PostMeta.vue'
 import PostNavigation from './components/PostNavigation.vue'
 import BlogIndex from './components/BlogIndex.vue'
 import YearPosts from './components/YearPosts.vue'
+import YearEvents from './components/YearEvents.vue'
+import EventIndex from './components/EventIndex.vue'
 import TwitterWidgetsLoader from './components/TwitterWidgetsLoader.vue'
 import { data as posts } from '../data/latestPosts.data'
 import './custom.css'
@@ -24,5 +26,7 @@ export default {
     app.component('UpcomingEvents', UpcomingEvents)
     app.component('BlogIndex', BlogIndex)
     app.component('YearPosts', YearPosts)
+    app.component('YearEvents', YearEvents)
+    app.component('EventIndex', EventIndex)
   }
 }
