@@ -1,3 +1,219 @@
+- name: PHPカンファレンス新潟2026
+  url: https://phpcon.niigata.jp/
+  dates:
+  - 2026-11-14
+  roles:
+  - 20分枠発表
+  location: 新潟県新潟市中央区
+  place: 朱鷺メッセ
+  hashtags:
+  - phpcon_niigata
+
+- name: KomeKaigi 2026
+  url: https://komekaigi.dev/
+  dates:
+  - 2026-10-31
+  location: 新潟県新潟市中央区
+  place: NINNO3
+  hashtags:
+  - KomeKaigi
+
+- name: PHPカンファレンス愛媛2026
+  url: https://phpcon.ehime.jp/
+  dates:
+  - 2026-10-03
+  roles:
+  - 20分枠発表
+  location: 愛媛県松山市
+  place: 愛媛大学 城北キャンパス
+  hashtags:
+  - phpcon_ehime
+
+- name: YAPC::Tokyo 2026 キックオフ！
+  url: https://yapcjapan.connpass.com/event/404741/
+  dates:
+  - 2026-10-01
+  roles:
+  - ライトニングトーク枠
+  location: 東京都港区
+  place: 株式会社メルカリ
+  hashtags:
+  - yapcjapan
+
+- name: '武蔵野線.dev クロスコミュニティ交流会 vol.1'
+  url: https://musashino-line.connpass.com/event/401818/
+  dates:
+  - 2026-09-23
+  location: 埼玉県朝霞市
+  place: 朝霞市産業文化センター
+  hashtags:
+  - musashino_line_dev
+
+- name: 'Gleam meetup/tokyo #1'
+  url: https://gleam-jp.connpass.com/event/405459/
+  dates:
+  - 2026-09-13
+  roles:
+  - 会場スタッフ
+  location: 東京都渋谷区
+  place: ピクシブ株式会社 東京オフィス
+
+- name: 大Funabashi.dev 2026
+  url: https://funabashidev.connpass.com/event/398253/
+  dates:
+  - 2026-09-12
+  location: 千葉県船橋市
+  place: 船橋商工会議所
+  hashtags:
+  - funabashidev
+
+- name: RubyKaigi 2026 follow up
+  url: https://rhc.connpass.com/event/392503/
+  dates:
+  - 2026-09-05
+  roles:
+  - 15分枠発表
+  location: 東京都港区
+  place: 株式会社IVRy
+  hashtags:
+  - rubykaigi_followup
+
+- name: '道産子.dev #1'
+  url: https://dosanko-dev.connpass.com/event/401213/
+  dates:
+  - 2026-09-04
+  location: 東京都新宿区
+  place: 株式会社FLINTERSオフィス
+  hashtags:
+  - 道産子dev
+
+- name: Learn Languages 2026
+  url: https://ll.jus.or.jp/2026/
+  dates:
+  - 2026-08-29
+  roles:
+  - 運営
+  - Language Update枠発表
+  location: 東京都大田区
+  place: 日本工学院専門学校 蒲田キャンパス
+  hashtags:
+  - ll2026jp
+
+- name: クリアコード20周年記念Meatup
+  url: https://clear-code.connpass.com/event/393654/
+  dates:
+  - 2026-07-29
+  location: 東京都新宿区
+  place: さくらインターネット東京支社
+  hashtags:
+  - cc20th
+
+- name: PHPカンファレンス2026
+  url: https://phpcon.php.gr.jp/2026/
+  dates:
+  - 2026-07-20
+  location: 東京都大田区
+  place: 大田区産業プラザPiO
+  hashtags:
+  - phpcon
+
+- name: KaigiEffect Kaigi 2026
+  url: https://andpad.connpass.com/event/395551/
+  dates:
+  - 2026-07-13
+  location: 東京都港区
+  place: ANDPAD STADIUM
+  hashtags:
+  - kaigieffect_kaigi
+
+- name: 東京Ruby会議13
+  url: https://regional.rubykaigi.org/tokyo13/
+  dates:
+  - 2026-06-27
+  location: 東京都杉並区
+  place: 座・高円寺2
+  hashtags:
+  - tokyorubykaigi
+
+- name: フロントエンド・PHPカンファレンス北海道2026
+  url: https://frontend-php-con.hokkaido.jp/
+  dates:
+  - 2026-06-06
+  location: 北海道札幌市白石区
+  place: 札幌コンベンションセンター
+  hashtags:
+  - frontend_phpcon_do
+
+- name: 関ケ原Ruby会議01
+  url: https://regional.rubykaigi.org/sekigahara01/
+  dates:
+  - 2026-05-30
+  location: 岐阜県不破郡関ケ原町
+  place: 関ケ原ふれあいセンター
+  hashtags:
+  - sekigahara01
+
+- name: Laravel Live Japan 2026
+  url: https://laravellive.jp/ja
+  dates:
+  - 2026-05-26
+  - 2026-05-27
+  location: 東京都立川市
+  place: 立川ステージガーデン
+  hashtags:
+  - LaravelLiveJP
+
+- name: PHPカンファレンス香川2026
+  url: https://phpcon.kagawa.jp/2026/
+  dates:
+  - 2026-05-09
+  roles:
+  - 30分枠発表
+  location: 香川県高松市
+  place: 玉藻公園内 披雲閣
+  hashtags:
+  - phpconkagawa
+
+- name: RubyKaigi 2026
+  url: https://rubykaigi.org/2026/
+  dates:
+  - 2026-04-22
+  - 2026-04-23
+  - 2026-04-24
+  location: 北海道函館市
+  place: 函館アリーナ・函館市民会館
+  hashtags:
+  - rubykaigi
+
+- name: PHPカンファレンス小田原2026
+  url: https://phpcon-odawara.jp/2026/
+  dates:
+  - 2026-04-11
+  roles:
+  - レギュラーセッション
+  location: 神奈川県小田原市
+  place: おだわら市民交流センター「UMECO」
+  hashtags:
+  - phpcon_odawara
+
+- name: 第2回仙台PHP勉強会
+  url: https://phpug-sdj.connpass.com/event/383864/
+  dates:
+  - 2026-03-13
+  location: 宮城県仙台市青葉区
+  place: インフィニットループ
+  hashtags:
+  - sendaiphp
+
+- name: 福岡Rubyist会議05
+  url: https://regional.rubykaigi.org/fukuoka05/
+  dates:
+  - 2026-02-28
+  location: 福岡県福岡市博多区
+  place: リファレンス駅東ビル3F 会議室H-2
+  hashtags:
+  - fukuokark05
+
 - name: BuriKaigi 2026
   url: https://burikaigi.dev/
   dates:
