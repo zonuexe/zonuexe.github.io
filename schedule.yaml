@@ -1,3 +1,15 @@
+- name: TechRAMEN 2026 Conference
+  url: https://techramenconf.net/2026/
+  dates:
+  - 2026-11-20
+  - 2026-11-21
+  roles:
+  - サポートスタッフ
+  location: 北海道富良野市
+  place: コンシェルジュ フラノ
+  hashtags:
+  - techramen26conf
+
 - name: PHPカンファレンス新潟2026
   url: https://phpcon.niigata.jp/
   dates:
@@ -198,6 +210,20 @@
   hashtags:
   - phpcon_odawara
 
+- name: PHPerKaigi 2026
+  url: https://phperkaigi.jp/2026/
+  dates:
+  - 2026-03-20
+  - 2026-03-21
+  - 2026-03-22
+  roles:
+  - コアスタッフ
+  - レギュラートーク（40分）
+  location: 東京都中野区
+  place: 中野セントラルパークカンファレンス
+  hashtags:
+  - phperkaigi
+
 - name: 第2回仙台PHP勉強会
   url: https://phpug-sdj.connpass.com/event/383864/
   dates:
@@ -284,3 +310,239 @@
   place: 株式会社ユーザベース
   hashtags:
   - kenro_py
+
+- name: PHPカンファレンス福岡2025
+  url: https://phpcon.fukuoka.jp/2025/
+  dates:
+  - 2025-11-08
+  roles:
+  - レギュラートーク（30分）
+  location: 福岡県福岡市博多区
+  place: 福岡ファッションビル・FFBホール
+  hashtags:
+  - phpconfuk
+
+- name: KomeKaigi 2025
+  url: https://komekaigi.connpass.com/event/365113/
+  dates:
+  - 2025-11-01
+  location: 新潟県新潟市中央区
+  place: 開志専門職大学 米山キャンパス
+  hashtags:
+  - komekaigi
+
+- name: 第1回仙台PHP勉強会
+  url: https://phpug-sdj.connpass.com/event/371486/
+  dates:
+  - 2025-10-31
+  roles:
+  - 20分枠発表
+  location: 宮城県仙台市青葉区
+  place: インフィニットループ
+  hashtags:
+  - sendaiphp
+
+- name: 神楽坂第1ターミナル
+  url: https://kagurazaka-terminal.connpass.com/event/370095/
+  dates:
+  - 2025-10-20
+  roles:
+  - 会場スタッフ
+  location: 東京都新宿区
+  place: 牛込箪笥地域センター
+  hashtags:
+  - kagurazaka_terminal
+
+- name: 東京Emacs勉強会 秋のワールドカフェ
+  url: https://tokyo-emacs.connpass.com/event/370781/
+  dates:
+  - 2025-10-05
+  roles:
+  - 会場スタッフ
+  location: 東京都渋谷区
+  place: ピクシブ株式会社
+  hashtags:
+  - tokyo_emacs
+
+- name: Learn Languages 2025
+  url: https://ll.jus.or.jp/2025/
+  dates:
+  - 2025-09-06
+  roles:
+  - Language Update枠
+  location: 東京都港区
+  place: docomo R&D OPEN LAB ODAIBA
+  hashtags:
+  - ll2025jp
+
+- name: 'Kofu.rb #1 TRICK 鑑賞回'
+  url: https://kofurb.connpass.com/event/362831/
+  dates:
+  - 2025-08-23
+  location: 山梨県甲府市
+  place: SHIRO-no-IRO
+  hashtags:
+  - kofurb
+
+- name: '栃木ゆるIT勉強会@小山 #3'
+  url: https://tochigi-study.connpass.com/event/352995/
+  dates:
+  - 2025-08-02
+  location: 栃木県小山市
+  place: 小山市立生涯学習センター
+  hashtags:
+  - 栃木ゆる勉強会
+
+- name: 札幌市中央区PHP会議01
+  url: https://1000php.connpass.com/event/358895/
+  dates:
+  - 2025-07-28
+  roles:
+  - 主催
+  location: 北海道札幌市中央区
+  place: 株式会社インフィニットループ 札幌本社
+  hashtags:
+  - 1000php
+
+- name: TechRAMEN 2025 Conference
+  url: https://techramenconf.net/2025/
+  dates:
+  - 2025-07-26
+  roles:
+  - サポートスタッフ
+  - '[一杯] トーク - 20分'
+  location: 北海道旭川市
+  place: 旭川リサーチセンター
+  hashtags:
+  - techramen25conf
+
+- name: '函館本線沿線勉強会 ~HNSAdev~ @旭川 2号車 もくもく会'
+  url: https://hnsadev.connpass.com/event/359673/
+  dates:
+  - 2025-07-25
+  location: 北海道旭川市
+  place: 旭川市障害者福祉センターおぴった
+  hashtags:
+  - hnsadev
+
+- name: PHP Lovers Meetup vol.9 after phpkansai OSS Gate
+  url: https://php-lovers-meetup.connpass.com/event/354724/
+  dates:
+  - 2025-07-20
+  roles:
+  - 運営
+  - 進行役
+  location: 兵庫県神戸市中央区
+  place: KIITO
+  hashtags:
+  - phplovers
+
+- name: PHPカンファレンス2025
+  url: https://phpcon.php.gr.jp/2025/
+  dates:
+  - 2025-06-28
+  roles:
+  - レギュラートーク（25分）
+  location: 東京都大田区
+  place: 大田区産業プラザPiO
+  hashtags:
+  - phpcon
+
+- name: 'akihabara.any #3【ノンジャンル技術系LTイベント】'
+  url: https://akihabara-any.connpass.com/event/352058/
+  dates:
+  - 2025-06-20
+  location: 東京都渋谷区
+  place: ピクシブ株式会社
+  hashtags:
+  - akihabara_any
+
+- name: PHPカンファレンス新潟2025
+  url: https://phpcon-niigata.connpass.com/event/349661/
+  dates:
+  - 2025-05-31
+  roles:
+  - コアスタッフ
+  - ワークショップ
+  location: 新潟県新潟市中央区
+  place: 開志専門職大学 米山キャンパス
+  hashtags:
+  - phpcon_niigata
+
+- name: PHPカンファレンス小田原2025
+  url: https://phpcon-odawara.jp/2025/
+  dates:
+  - 2025-04-12
+  roles:
+  - 個人スポンサー
+  location: 神奈川県小田原市
+  place: おだわら市民交流センター「UMECO」
+  hashtags:
+  - phpcon_odawara
+
+- name: 'ゴリラ.vim #35 ~ Vim vs Emacs 頂上決戦 ~'
+  url: https://gorillavim.connpass.com/event/348619/
+  dates:
+  - 2025-03-26
+  location: 東京都港区
+  place: 株式会社オプティム 東京本社
+  hashtags:
+  - gorillavim
+
+- name: PHPerKaigi 2025
+  url: https://phperkaigi.jp/2025/
+  dates:
+  - 2025-03-21
+  - 2025-03-22
+  - 2025-03-23
+  roles:
+  - コアスタッフ
+  - レギュラートーク（20分）
+  location: 東京都中野区
+  place: 中野セントラルパークカンファレンス
+  hashtags:
+  - phperkaigi
+
+- name: 'レトロゲームから得た学びの発表 #01'
+  url: https://retro-games-any.connpass.com/event/337756/
+  dates:
+  - 2025-01-28
+  roles:
+  - 会場スタッフ
+  location: 東京都渋谷区
+  place: ピクシブ株式会社 東京オフィス
+  hashtags:
+  - retro_games_any
+
+- name: 'Niigata5分Tech #15 With PHP勉強会in新潟'
+  url: https://niigata-5min-tech.connpass.com/event/341808/
+  dates:
+  - 2025-01-25
+  roles:
+  - ライトニングトーク枠
+  location: 新潟県新潟市中央区
+  place: 開志専門職大学 米山キャンパス
+  hashtags:
+  - niigata_5min_tech
+
+- name: 栃木ゆるIT勉強会@小山
+  url: https://tochigi-study.connpass.com/event/337526/
+  dates:
+  - 2025-01-18
+  location: 栃木県小山市
+  place: 小山市立生涯学習センター
+  hashtags:
+  - 栃木ゆる勉強会
+
+- name: TechRAMEN 2024 Conference
+  url: https://techramenconf.net/2024/
+  dates:
+  - 2024-07-26
+  - 2024-07-27
+  roles:
+  - サポートスタッフ
+  - '[一杯] トーク - 20分'
+  location: 北海道旭川市
+  place: 大雪クリスタルホール
+  hashtags:
+  - techramen24conf
