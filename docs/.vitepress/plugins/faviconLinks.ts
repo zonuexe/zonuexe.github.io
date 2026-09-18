@@ -1,12 +1,11 @@
 import type { MarkdownEnv } from 'vitepress'
-import type { PluginSimple } from 'markdown-it'
-import Token from 'markdown-it/lib/token.mjs'
+import MarkdownIt from 'markdown-it'
 
 interface Options {
   include?: (env: MarkdownEnv) => boolean
 }
 
-export const faviconLinkPlugin: PluginSimple = (md, options: Options = {}) => {
+export const faviconLinkPlugin = (md: MarkdownIt, options: Options = {}) => {
   const defaultRender =
     md.renderer.rules.link_open ??
     ((tokens, idx, _options, _env, self) => self.renderToken(tokens, idx, _options))
@@ -18,7 +17,7 @@ export const faviconLinkPlugin: PluginSimple = (md, options: Options = {}) => {
     if (shouldInclude && isExternalLink(href)) {
       const hostname = extractHostname(href)
       if (hostname) {
-        const iconToken = new Token('html_inline', '', 0)
+        const iconToken = new MarkdownIt.Token('html_inline', '', 0)
         iconToken.content = `<img class="link-favicon" src="https://www.google.com/s2/favicons?domain=${hostname}" alt="" loading="lazy" width="16" height="16">`
         tokens.splice(idx + 1, 0, iconToken)
       }
